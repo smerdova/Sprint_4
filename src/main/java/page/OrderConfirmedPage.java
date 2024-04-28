@@ -32,8 +32,4 @@ public class OrderConfirmedPage {
         return header.getText();
     }
 
-    public void clickShowStatusButton() {
-        buttonShowStatus.click();
-    }
-
 }

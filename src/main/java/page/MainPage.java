@@ -22,7 +22,7 @@ public class MainPage {
     @FindBy(xpath = "//div[contains(@class, 'FinishButton')]/button[text()='Заказать']")
     private WebElement bottomOrderButton;
 
-    // Куки
+    // Кнобка согласия на куки
     @FindBy(id = "rcc-confirm-button")
     private WebElement confirmCookieButton;
 
@@ -38,6 +38,7 @@ public class MainPage {
                 topOrderButton.click();
                 break;
             case BOTTOM:
+                // Сначала скроллим вниз
                 ((JavascriptExecutor) webDriver)
                         .executeScript("window.scrollTo(0, document.body.scrollHeight)");
                 bottomOrderButton.click();
@@ -46,14 +47,19 @@ public class MainPage {
     }
 
     public String GetAnswer(String questionText) {
+        // Скроллим вниз
         ((JavascriptExecutor) webDriver)
                 .executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        // Находим вопрос по тексту
         WebElement questionElement = webDriver.findElement(
                 By.xpath("//div[@class='accordion__button'][contains(text(), '" + questionText + "')]"));
         String questionId = questionElement.getAttribute("id");
         questionElement.click();
+        // Ищем соответствующий ответ по Id
+        // Пример accordion__heading-0 -> accordion__panel-0
         String answerId = questionId.replaceAll("heading", "panel");
         WebElement answerElement = webDriver.findElement(By.id(answerId));
+
         return answerElement.getText();
     }
 

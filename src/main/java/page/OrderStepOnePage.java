@@ -57,6 +57,7 @@ public class OrderStepOnePage {
         metroInput.click();
         metroInput.sendKeys(name);
 
+        // Находим станцию не только по имени, но и по цвету
         WebElement station = webDriver.findElement(
                 By.xpath("//div[contains(@style, '" + color + "')]"));
         station.click();

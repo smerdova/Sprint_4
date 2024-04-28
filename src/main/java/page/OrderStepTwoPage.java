@@ -52,6 +52,7 @@ public class OrderStepTwoPage {
 
     public void setDuration(String value) {
         durationInput.click();
+        // Ищем значение по тексту
         WebElement duration = webDriver.findElement(
                 By.xpath("//div[text()='" + value + "']"));
         duration.click();
