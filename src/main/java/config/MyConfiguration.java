@@ -1,4 +1,4 @@
-package org.example;
+package config;
 
 public abstract class MyConfiguration {
     public static final String PAGE_URL = "https://qa-scooter.praktikum-services.ru/";

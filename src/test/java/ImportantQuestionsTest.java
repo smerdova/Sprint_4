@@ -1,4 +1,4 @@
-import org.example.MyConfiguration;
+import config.MyConfiguration;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -115,12 +115,12 @@ public class ImportantQuestionsTest {
 
     @Before
     public void setup() throws Exception {
+        webDriver = WebDriverFactory.getWebDriver(browserType);
+        webDriver.get(MyConfiguration.PAGE_URL);
     }
 
     @Test
     public void checkQuestions() throws Exception {
-        webDriver = WebDriverFactory.getWebDriver(browserType);
-        webDriver.get(MyConfiguration.PAGE_URL);
         MainPage mainPage = new MainPage(webDriver);
         mainPage.clickConfirmCookieButton();
         String actualAnswer = mainPage.GetAnswer(question);
