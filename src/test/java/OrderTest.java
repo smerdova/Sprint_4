@@ -1,4 +1,5 @@
 import config.MyConfiguration;
+import factory.WebDriverFactory;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,7 +21,6 @@ public class OrderTest {
         return Arrays.asList(
                 new Object[][] {
                         {
-                                WebDriverFactory.BrowserType.FIREFOX,
                                 MainPage.OrderButtonPosition.BOTTOM,
                                 "Василий",
                                 "Чапаев",
@@ -34,7 +34,6 @@ public class OrderTest {
                                 "побыстрее!"
                         },
                         {
-                                WebDriverFactory.BrowserType.FIREFOX,
                                 MainPage.OrderButtonPosition.TOP,
                                 "Иван",
                                 "Грозный",
@@ -48,7 +47,6 @@ public class OrderTest {
                                 "помедленнее!"
                         },
                         {
-                                WebDriverFactory.BrowserType.CHROME,
                                 MainPage.OrderButtonPosition.BOTTOM,
                                 "Василий",
                                 "Чапаев",
@@ -62,7 +60,6 @@ public class OrderTest {
                                 "побыстрее!"
                         },
                         {
-                                WebDriverFactory.BrowserType.CHROME,
                                 MainPage.OrderButtonPosition.TOP,
                                 "Иван",
                                 "Грозный",
@@ -79,7 +76,6 @@ public class OrderTest {
     }
 
     private WebDriver webDriver;
-    private final WebDriverFactory.BrowserType browserType;
     private final MainPage.OrderButtonPosition orderButtonPosition;
     private final String name;
     private final String surName;
@@ -92,10 +88,9 @@ public class OrderTest {
     private final OrderStepTwoPage.Color color;
     private final String comment;
 
-    public OrderTest(WebDriverFactory.BrowserType browserType, MainPage.OrderButtonPosition orderButtonPosition, String name, String surName, String address,
+    public OrderTest(MainPage.OrderButtonPosition orderButtonPosition, String name, String surName, String address,
                      String metroName, OrderStepOnePage.MetroColor metroColor, String phoneNumber, String whenDate,
                      String duration, OrderStepTwoPage.Color color, String comment) {
-        this.browserType = browserType;
         this.orderButtonPosition = orderButtonPosition;
         this.name = name;
         this.surName = surName;
@@ -111,7 +106,7 @@ public class OrderTest {
 
     @Before
     public void setup() throws Exception {
-        webDriver = WebDriverFactory.getWebDriver(browserType);
+        webDriver = WebDriverFactory.getWebDriver(MyConfiguration.BROWSER_TYPE);
         webDriver.get(MyConfiguration.PAGE_URL);
     }
 
